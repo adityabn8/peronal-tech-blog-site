@@ -1,33 +1,37 @@
-import { defineFlow } from 'genkit';
-import { z } from 'zod';
-import { ai } from '../genkit';
+'use server';
 
-export const suggestTitleFlow = defineFlow(
+import {z} from 'genkit/zod';
+import {ai} from '../genkit';
+
+const SuggestTitleInputSchema = z.object({content: z.string()});
+const SuggestTitleOutputSchema = z.array(z.string());
+
+export const suggestTitleFlow = ai.defineFlow(
   {
     name: 'suggestTitleFlow',
-    inputSchema: z.object({ content: z.string() }),
-    outputSchema: z.array(z.string()),
+    inputSchema: SuggestTitleInputSchema,
+    outputSchema: SuggestTitleOutputSchema,
   },
-  async ({ content }) => {
+  async ({content}) => {
     const llmResponse = await ai.generate({
-      prompt: `Based on the following blog post content, suggest 5 catchy and SEO-friendly titles. Return them as a JSON array of strings, like ["Title 1", "Title 2", ...].
+      prompt: `Based on the following blog post content, suggest 5 catchy and SEO-friendly titles.
 
 Content:
 ${content}`,
       config: {
         temperature: 0.8,
       },
-      format: 'json',
       output: {
-          schema: z.object({
-              titles: z.array(z.string()).length(5, "You must provide exactly 5 titles."),
-          })
-      }
+        format: 'json',
+        schema: z.object({
+          titles: z.array(z.string()).length(5, 'You must provide exactly 5 titles.'),
+        }),
+      },
     });
 
     const result = llmResponse.output();
     if (!result || !result.titles) {
-        return [];
+      return [];
     }
     return result.titles;
   }
