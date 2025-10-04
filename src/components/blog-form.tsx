@@ -4,16 +4,14 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useFormState, useFormStatus } from 'react-dom';
-import { createPost, updatePost, suggestTitleAction } from '@/lib/actions';
+import { createPost, updatePost } from '@/lib/actions';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Textarea } from './ui/textarea';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from './ui/card';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from './ui/form';
 import { BlogPost } from '@/types';
-import { Popover, PopoverContent, PopoverTrigger } from './ui/popover';
-import { Lightbulb, Loader2, Save } from 'lucide-react';
-import { useState } from 'react';
+import { Save } from 'lucide-react';
 
 const PostSchema = z.object({
   title: z.string().min(3, { message: 'Title must be at least 3 characters.' }),
@@ -41,27 +39,8 @@ export default function BlogForm({ post }: { post?: BlogPost }) {
     },
   });
 
-  const [suggestions, setSuggestions] = useState<string[]>([]);
-  const [isSuggesting, setIsSuggesting] = useState(false);
-
   const formAction = post ? updatePost.bind(null, post.slug) : createPost;
   const [state, dispatch] = useFormState(formAction, { message: '', errors: {} });
-
-  const handleSuggest = async () => {
-    const content = form.getValues('content');
-    if (!content) {
-        alert("Please write some content first to get title suggestions.");
-        return;
-    }
-    setIsSuggesting(true);
-    const result = await suggestTitleAction(content);
-    setSuggestions(result);
-    setIsSuggesting(false);
-  };
-  
-  const onSuggestionClick = (title: string) => {
-    form.setValue('title', title);
-  };
 
   return (
     <Form {...form}>
@@ -77,38 +56,9 @@ export default function BlogForm({ post }: { post?: BlogPost }) {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Title</FormLabel>
-                  <div className="flex items-start gap-2">
-                    <FormControl>
-                      <Input placeholder="Your amazing blog title" {...field} />
-                    </FormControl>
-                    <Popover>
-                      <PopoverTrigger asChild>
-                        <Button type="button" variant="outline" onClick={handleSuggest} disabled={isSuggesting}>
-                          {isSuggesting ? (
-                            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                          ) : (
-                            <Lightbulb className="mr-2 h-4 w-4" />
-                          )}
-                          Suggest
-                        </Button>
-                      </PopoverTrigger>
-                      <PopoverContent className="w-80">
-                         <div className="space-y-2">
-                           <h4 className="font-medium leading-none">AI Suggestions</h4>
-                           <p className="text-sm text-muted-foreground">Click to use a title.</p>
-                           {suggestions.length > 0 ? (
-                             <div className="flex flex-col gap-2 pt-2">
-                               {suggestions.map((s, i) => (
-                                 <Button key={i} variant="ghost" className="justify-start text-left h-auto whitespace-normal" onClick={() => onSuggestionClick(s)}>{s}</Button>
-                               ))}
-                             </div>
-                           ) : (
-                             <p className="text-sm text-center pt-4 text-muted-foreground">{isSuggesting ? 'Generating...' : 'No suggestions yet.'}</p>
-                           )}
-                         </div>
-                      </PopoverContent>
-                    </Popover>
-                  </div>
+                  <FormControl>
+                    <Input placeholder="Your amazing blog title" {...field} />
+                  </FormControl>
                   <FormMessage>{state.errors?.title}</FormMessage>
                 </FormItem>
               )}

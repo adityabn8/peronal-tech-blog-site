@@ -4,7 +4,6 @@ import { signIn as authSignIn, signOut as authSignOut } from '@/lib/auth';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { addPost, editPost, removePost } from './data';
-import { suggestTitleFlow } from '@/ai/flows/suggest-title';
 import { z } from 'zod';
 
 export async function login(formData: FormData) {
@@ -82,18 +81,5 @@ export async function deletePost(slug: string) {
     return { message: 'Post deleted successfully.' };
   } catch (error) {
     return { message: 'Database Error: Failed to Delete Post.' };
-  }
-}
-
-export async function suggestTitleAction(content: string): Promise<string[]> {
-  if (!content || content.length < 20) {
-    return [];
-  }
-  try {
-    const suggestions = await suggestTitleFlow({ content });
-    return suggestions;
-  } catch (error) {
-    console.error('AI title suggestion failed:', error);
-    return [];
   }
 }
