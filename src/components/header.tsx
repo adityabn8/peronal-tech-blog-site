@@ -20,7 +20,7 @@ export default async function Header() {
             </Button>
           ) : (
             <Button asChild variant="outline">
-              <Link href="/admin/login">Admin Login</Link>
+              <Link href="/login">Admin Login</Link>
             </Button>
           )}
         </nav>

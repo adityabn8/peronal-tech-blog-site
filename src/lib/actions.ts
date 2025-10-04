@@ -16,7 +16,7 @@ export async function login(formData: FormData) {
 
 export async function logout() {
   await authSignOut();
-  redirect('/admin/login');
+  redirect('/login');
 }
 
 const PostSchema = z.object({
