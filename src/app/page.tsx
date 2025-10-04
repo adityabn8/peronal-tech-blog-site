@@ -7,7 +7,7 @@ export default async function Home() {
   return (
     <div className="space-y-8">
       <div className="text-center">
-        <h1 className="text-4xl md:text-6xl font-headline font-bold">Tech Blog Central</h1>
+        <h1 className="text-4xl md:text-6xl font-headline font-bold">Aditya's Learning Diary</h1>
         <p className="text-muted-foreground mt-2">Insights and tutorials on modern web development.</p>
       </div>
       

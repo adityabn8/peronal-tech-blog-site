@@ -11,7 +11,7 @@ export default async function Header() {
       <div className="container mx-auto flex justify-between items-center">
         <Link href="/" className="flex items-center gap-2">
           <BookMarked className="text-primary" size={28} />
-          <span className="text-xl font-headline font-bold">Tech Blog Central</span>
+          <span className="text-xl font-headline font-bold">Aditya's Learning Diary</span>
         </Link>
         <nav>
           {session ? (

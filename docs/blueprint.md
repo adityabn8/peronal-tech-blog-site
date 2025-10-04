@@ -1,4 +1,4 @@
-# **App Name**: Tech Blog Central
+# **App Name**: Aditya's Learning Diary
 
 ## Core Features:
 

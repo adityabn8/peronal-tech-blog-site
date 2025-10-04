@@ -33,7 +33,7 @@ export default async function AdminLayout({
           <SidebarHeader>
             <div className="flex items-center gap-2">
               <BookMarked className="text-primary size-7" />
-              <span className="font-headline text-lg font-semibold text-sidebar-foreground">Tech Blog Central</span>
+              <span className="font-headline text-lg font-semibold text-sidebar-foreground">Aditya's Learning Diary</span>
             </div>
           </SidebarHeader>
           <SidebarContent>

@@ -6,7 +6,7 @@ import Footer from '@/components/footer';
 import { cn } from '@/lib/utils';
 
 export const metadata: Metadata = {
-  title: 'Tech Blog Central',
+  title: `Aditya's Learning Diary`,
   description: 'A personal technical blog application.',
 };
 
