@@ -1,3 +1,40 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "1",
+      "description": "Abstract code on a screen",
+      "imageUrl": "https://images.unsplash.com/photo-1569396116180-7fe09fa16dd8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxjb2RlJTIwdGVjaG5vbG9neXxlbnwwfHx8fDE3NTk0OTU1NTV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "code technology"
+    },
+    {
+      "id": "2",
+      "description": "A modern desk setup with a laptop",
+      "imageUrl": "https://images.unsplash.com/photo-1693773852578-65cf594b62dd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxkZXZlbG9wZXIlMjBzZXR1cHxlbnwwfHx8fDE3NTk1OTA3NzF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "developer setup"
+    },
+    {
+      "id": "3",
+      "description": "Server racks in a data center",
+      "imageUrl": "https://images.unsplash.com/photo-1612168311571-7da34cbcd90a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxzZXJ2ZXIlMjBpbmZyYXN0cnVjdHVyZXxlbnwwfHx8fDE3NTk1MTkxOTB8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "server infrastructure"
+    },
+    {
+      "id": "4",
+      "description": "A person typing on a keyboard",
+      "imageUrl": "https://images.unsplash.com/photo-1722681983885-5c06e670d067?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxwcm9ncmFtbWluZyUyMGtleWJvYXJkfGVufDB8fHx8MTc1OTU5MDc3MXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "programming keyboard"
+    },
+    {
+      "id": "5",
+      "description": "Flowchart on a whiteboard",
+      "imageUrl": "https://images.unsplash.com/photo-1547482812-2432c5425f2c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8cGxhbm5pbmclMjBhcmNoaXRlY3R1cmV8ZW58MHx8fHwxNzU5NTkwNzcxfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "planning architecture"
+    },
+    {
+      "id": "6",
+      "description": "Network cables connected to a switch",
+      "imageUrl": "https://images.unsplash.com/photo-1606814540563-5c02d62fd409?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxuZXR3b3JraW5nJTIwaW50ZXJuZXR8ZW58MHx8fHwxNzU5NTkwNzcxfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "networking internet"
+    }
+  ]
 }
