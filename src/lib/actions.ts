@@ -6,7 +6,7 @@ import { redirect } from 'next/navigation';
 import { addPost, editPost, removePost } from './data';
 import { z } from 'zod';
 
-export async function login(formData: FormData) {
+export async function login(prevState: any, formData: FormData) {
   const result = await authSignIn(formData);
   if (result.success) {
     redirect('/admin');
