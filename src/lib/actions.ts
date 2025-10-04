@@ -53,10 +53,15 @@ export async function createPost(prevState: any, formData: FormData) {
   redirect('/admin');
 }
 
-export async function updatePost(slug: string, prevState: any, formData: FormData) {
+export async function updatePost(prevState: any, formData: FormData) {
   const session = await getSession();
   if (!session) {
     return { message: 'Unauthorized' };
+  }
+
+  const slug = formData.get('slug') as string;
+  if (!slug) {
+    return { message: 'Slug is missing.' };
   }
 
   const validatedFields = PostSchema.safeParse({

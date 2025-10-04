@@ -17,6 +17,7 @@ import { Save } from 'lucide-react';
 const PostSchema = z.object({
   title: z.string().min(3, { message: 'Title must be at least 3 characters.' }),
   content: z.string().min(10, { message: 'Content must be at least 10 characters.' }),
+  slug: z.string().optional(),
 });
 
 type PostFormData = z.infer<typeof PostSchema>;
@@ -37,10 +38,11 @@ export default function BlogForm({ post }: { post?: BlogPost }) {
     defaultValues: {
       title: post?.title || '',
       content: post?.content || '',
+      slug: post?.slug,
     },
   });
 
-  const formAction = post ? updatePost.bind(null, post.slug) : createPost;
+  const formAction = post ? updatePost : createPost;
   const [state, dispatch] = useActionState(formAction, { message: '', errors: {} });
 
   return (
@@ -51,6 +53,7 @@ export default function BlogForm({ post }: { post?: BlogPost }) {
             <CardTitle className="font-headline">{post ? 'Edit Blog Post' : 'Create a New Post'}</CardTitle>
           </CardHeader>
           <CardContent className="space-y-6">
+            {post && <input type="hidden" name="slug" value={post.slug} />}
             <FormField
               control={form.control}
               name="title"
@@ -80,7 +83,7 @@ export default function BlogForm({ post }: { post?: BlogPost }) {
           </CardContent>
           <CardFooter className='justify-between'>
             <SubmitButton isEditing={!!post} />
-             {state?.message && !state.errors && <p className='text-sm text-destructive'>{state.message}</p>}
+             {state?.message && <p className='text-sm text-destructive'>{state.message}</p>}
           </CardFooter>
         </Card>
       </form>
