@@ -3,7 +3,8 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { useFormState, useFormStatus } from 'react-dom';
+import { useActionState } from 'react';
+import { useFormStatus } from 'react-dom';
 import { createPost, updatePost } from '@/lib/actions';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
@@ -40,7 +41,7 @@ export default function BlogForm({ post }: { post?: BlogPost }) {
   });
 
   const formAction = post ? updatePost.bind(null, post.slug) : createPost;
-  const [state, dispatch] = useFormState(formAction, { message: '', errors: {} });
+  const [state, dispatch] = useActionState(formAction, { message: '', errors: {} });
 
   return (
     <Form {...form}>
