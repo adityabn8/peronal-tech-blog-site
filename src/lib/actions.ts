@@ -1,6 +1,6 @@
 'use server';
 
-import { signIn as authSignIn, signOut as authSignOut } from '@/lib/auth';
+import { getSession, signIn as authSignIn, signOut as authSignOut } from '@/lib/auth';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { addPost, editPost, removePost } from './data';
@@ -25,6 +25,11 @@ const PostSchema = z.object({
 });
 
 export async function createPost(prevState: any, formData: FormData) {
+  const session = await getSession();
+  if (!session) {
+    return { message: 'Unauthorized' };
+  }
+  
   const validatedFields = PostSchema.safeParse({
     title: formData.get('title'),
     content: formData.get('content'),
@@ -49,6 +54,11 @@ export async function createPost(prevState: any, formData: FormData) {
 }
 
 export async function updatePost(slug: string, prevState: any, formData: FormData) {
+  const session = await getSession();
+  if (!session) {
+    return { message: 'Unauthorized' };
+  }
+
   const validatedFields = PostSchema.safeParse({
     title: formData.get('title'),
     content: formData.get('content'),
@@ -74,6 +84,11 @@ export async function updatePost(slug: string, prevState: any, formData: FormDat
 }
 
 export async function deletePost(slug: string) {
+  const session = await getSession();
+  if (!session) {
+    return { message: 'Unauthorized' };
+  }
+  
   try {
     await removePost(slug);
     revalidatePath('/admin');
